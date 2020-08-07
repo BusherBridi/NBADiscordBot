@@ -21,8 +21,8 @@ async def on_ready():
 async def on_message(message):
     if message.content == '.ping':
         await message.channel.send('pong')
+    if message.content == '.lebron':
         await message.channel.send(file=discord.File('lebron.jpg'))
-
 
 
 
