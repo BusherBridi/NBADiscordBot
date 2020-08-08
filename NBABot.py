@@ -31,8 +31,12 @@ async def on_message(message):
         await message.channel.send(f'Home:{home_score}\nAway:{away_score}')
     if message.content.startswith('.status'):
         await message.channel.send('Skyhook running....')
+    if message.cotent.startswith('.schedule'):
+        req = requests.get(url+'schedule')
+        games = req.json()['games']
+        await message.channel.send(games)
 
-        
+     
 
 
 
