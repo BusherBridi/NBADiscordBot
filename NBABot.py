@@ -22,13 +22,20 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author == client.user:
-        return #no more infinte loops jet...
+        return #no more infinte loops jet...haha so funny bro
     if message.content.startswith('.score'):
         team = message.content.replace('.score','')
         req = requests.get(url+'score'+team)
         away_score = req.json()['away_score'] #OPTIMIZE THIS
         home_score = req.json()['home_score']
         await message.channel.send(f'Home:{home_score}\nAway:{away_score}')
+    if message.content.startswith('.status'):
+        await message.channel.send('Skyhook running....')
+
+        
+
+
+
 
 @bot.command
 async def test(ctx, arg):
