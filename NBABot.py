@@ -25,16 +25,25 @@ async def on_message(message):
         return #no more infinte loops jet...haha so funny bro
     if message.content.startswith('.score'):
         team = message.content.replace('.score','')
-        req = requests.get(url+'score'+team)
+        team = team.replace(' ','')
+        req = requests.get(url+'score/'+team)
         away_score = req.json()['away_score'] #OPTIMIZE THIS
         home_score = req.json()['home_score']
         await message.channel.send(f'Home:{home_score}\nAway:{away_score}')
     if message.content.startswith('.status'):
         await message.channel.send('Skyhook running....')
-    if message.cotent.startswith('.schedule'):
+    if message.content.startswith('.schedule'):
         req = requests.get(url+'schedule')
-        games = req.json()['games']
-        await message.channel.send(games)
+        games = req.json()
+        if games['number_of_live_games'] == 0:
+            await message.channel.send('No live games')
+        else:
+            i = 1
+            for game in games.values():
+                away_abv = game['away_abv']
+                home_abv = game['home_abv']
+                await message.channel.send(f'{i}: {away_abv}@{home_abv}')
+                i = i+1
 
      
 
