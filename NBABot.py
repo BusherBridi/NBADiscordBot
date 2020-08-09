@@ -38,12 +38,15 @@ async def on_message(message):
         if games['number_of_live_games'] == 0:
             await message.channel.send('No live games')
         else:
-            i = 1
-            for game in games.values():
-                away_abv = game['away_abv']
-                home_abv = game['home_abv']
-                await message.channel.send(f'{i}: {away_abv}@{home_abv}')
-                i = i+1
+            try:
+                i = 1
+                for game in games.values():
+                    away_abv = game['away_abv']
+                    home_abv = game['home_abv']
+                    await message.channel.send(f'{i}: {away_abv}@{home_abv}')
+                    i = i+1
+            except:
+                pass
 
      
 
