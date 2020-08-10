@@ -31,10 +31,13 @@ async def on_message(message):
         await message.channel.send(f'Home:{home_score}\nAway:{away_score}')
     if message.content.startswith('.status'):
         await message.channel.send('Skyhook running!')
+    if message.content.startswith('.embed'):
+        embed = discord.Embed(title="Title", description="Desc", color=0x00ff00)
+        embed.add_field(name="Field1", value="hi", inline=False)
+        embed.add_field(name="Field2", value="hi2", inline=False)
+        await message.channel.send(embed=embed)
 
         
-
-
 
 
 @bot.command
